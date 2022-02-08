@@ -38,3 +38,28 @@ def organize_resources():
 
     return workout_data
 
+
+# Class for organizing workout data
+class WorkoutData:
+    # Expects to be passed workout_data, formatted as documented by organize_resources()
+    def __init__(self, workout_data):
+        self.workout_data = workout_data
+
+    # Returns a set of all exercise names contained by this WorkoutData
+    def get_exercise_names(self):
+        exercise_names = set()
+        for workout_datum in self.workout_data:
+            exercise_names.add(workout_datum[1])
+        return exercise_names
+
+    # Returns a list of lists of all data for the passed exercise name
+    def get_exercise_data(self, exercise_name):
+        exercise_data = []
+        for workout_datum in self.workout_data:
+            if workout_datum[1].lower() == exercise_name.lower():
+                exercise_data.append(workout_datum)
+
+    # Returns workout_data, formatted as documented by organize_resources()
+    def get_workout_data(self):
+        return self.workout_data
+
