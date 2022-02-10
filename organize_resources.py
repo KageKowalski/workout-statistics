@@ -36,6 +36,20 @@ def organize_resources():
                         else:
                             i = i + 1
 
+    # Standardize exercise names
+    for workout_datum in workout_data:
+        bench_press_aliases = ["chest press", "bench press", "flat barbell chest press", "flat bench"]
+        incline_bench_press_aliases = ["incline barbell chest press", "incline bench press", "incline chest press",
+                                       "incline bench chest press"]
+        if workout_datum[1].lower() in bench_press_aliases:
+            workout_datum[1] = "Flat Barbell Bench Press"
+        elif workout_datum[1].lower() in incline_bench_press_aliases:
+            workout_datum[1] = "Incline Barbell Bench Press"
+        elif workout_datum[1].lower() == "incline dumbbell chest press":
+            workout_datum[1] = "Incline Dumbbell Bench Press"
+        elif workout_datum[1].lower() == "flat dumbbell chest press":
+            workout_datum[1] = "Flat Dumbbell Bench Press"
+
     return workout_data
 
 
