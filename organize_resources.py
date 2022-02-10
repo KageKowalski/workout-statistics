@@ -41,6 +41,11 @@ def organize_resources():
         bench_press_aliases = ["chest press", "bench press", "flat barbell chest press", "flat bench"]
         incline_bench_press_aliases = ["incline barbell chest press", "incline bench press", "incline chest press",
                                        "incline bench chest press"]
+        overhead_press_aliases = ["over the head press", "overhead barbell press", "overhead press",
+                                  "barbell overhead press"]
+        bth_overhead_press_aliases = ["behind head overhear press", "behind the head over the head press",
+                                      "behind the head overhead press", "behind head overhead press"]
+        french_press_aliases = ["french curls", "french press", "overhead barbell french press"]
         if workout_datum[1].lower() in bench_press_aliases:
             workout_datum[1] = "Flat Barbell Bench Press"
         elif workout_datum[1].lower() in incline_bench_press_aliases:
@@ -49,6 +54,12 @@ def organize_resources():
             workout_datum[1] = "Incline Dumbbell Bench Press"
         elif workout_datum[1].lower() == "flat dumbbell chest press":
             workout_datum[1] = "Flat Dumbbell Bench Press"
+        elif workout_datum[1].lower() in overhead_press_aliases:
+            workout_datum[1] = "Overhead Barbell Press"
+        elif workout_datum[1].lower() in bth_overhead_press_aliases:
+            workout_datum[1] = "BTH Overhead Barbell Press"
+        elif workout_datum[1].lower() in french_press_aliases:
+            workout_datum[1] = "French Press"
 
     return workout_data
 
