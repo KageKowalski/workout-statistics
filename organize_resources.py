@@ -36,5 +36,55 @@ def organize_resources():
                         else:
                             i = i + 1
 
+    # Standardize exercise names
+    for workout_datum in workout_data:
+        bench_press_aliases = ["chest press", "bench press", "flat barbell chest press", "flat bench"]
+        incline_bench_press_aliases = ["incline barbell chest press", "incline bench press", "incline chest press",
+                                       "incline bench chest press"]
+        overhead_press_aliases = ["over the head press", "overhead barbell press", "overhead press",
+                                  "barbell overhead press"]
+        bth_overhead_press_aliases = ["behind head overhear press", "behind the head over the head press",
+                                      "behind the head overhead press", "behind head overhead press"]
+        french_press_aliases = ["french curls", "french press", "overhead barbell french press"]
+        if workout_datum[1].lower() in bench_press_aliases:
+            workout_datum[1] = "Flat Barbell Bench Press"
+        elif workout_datum[1].lower() in incline_bench_press_aliases:
+            workout_datum[1] = "Incline Barbell Bench Press"
+        elif workout_datum[1].lower() == "incline dumbbell chest press":
+            workout_datum[1] = "Incline Dumbbell Bench Press"
+        elif workout_datum[1].lower() == "flat dumbbell chest press":
+            workout_datum[1] = "Flat Dumbbell Bench Press"
+        elif workout_datum[1].lower() in overhead_press_aliases:
+            workout_datum[1] = "Overhead Barbell Press"
+        elif workout_datum[1].lower() in bth_overhead_press_aliases:
+            workout_datum[1] = "BTH Overhead Barbell Press"
+        elif workout_datum[1].lower() in french_press_aliases:
+            workout_datum[1] = "French Press"
+
     return workout_data
+
+
+# Class for organizing workout data
+class WorkoutData:
+    # Expects to be passed workout_data, formatted as documented by organize_resources()
+    def __init__(self, workout_data):
+        self.workout_data = workout_data
+
+    # Returns a set of all exercise names contained by this WorkoutData
+    def get_exercise_names(self):
+        exercise_names = set()
+        for workout_datum in self.workout_data:
+            exercise_names.add(workout_datum[1])
+        return exercise_names
+
+    # Returns a list of lists of all data for the passed exercise name
+    def get_exercise_data(self, exercise_name):
+        exercise_data = []
+        for workout_datum in self.workout_data:
+            if workout_datum[1].lower() == exercise_name.lower():
+                exercise_data.append(workout_datum)
+
+    # Returns workout_data, formatted as documented by organize_resources()
+    def get_workout_data(self):
+        return self.workout_data
 
