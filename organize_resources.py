@@ -61,6 +61,22 @@ def organize_resources():
         elif workout_datum[1].lower() in french_press_aliases:
             workout_datum[1] = "French Press"
 
+    i = 0
+    while i < len(workout_data):
+        remove_datum = False
+        if workout_data[i][0] == '' or workout_data[i][1] == '':
+            remove_datum = True
+        for weight in workout_data[i][2].split('.'):
+            if not weight.isdigit():
+                remove_datum = True
+        for rep in workout_data[i][3].split('.'):
+            if not rep.isdigit():
+                remove_datum = True
+        if remove_datum:
+            workout_data.remove(workout_data[i])
+        else:
+            i = i+1
+
     return workout_data
 
 
